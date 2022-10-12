@@ -26,7 +26,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "codegen": "graphql-codegen",
+    "codegen:watch": "graphql-codegen --watch"
   },
   "eslintConfig": {
     "extends": [
@@ -47,6 +49,8 @@
     ]
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^2.13.6",
+    "@graphql-codegen/client-preset": "^1.0.6",
     "@types/react-router-dom": "^5.3.3"
   }
 }

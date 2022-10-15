@@ -30,7 +30,7 @@ const CreateAccount = () => {
     formState: { errors, isValid },
     handleSubmit,
   } = useForm<CreateAccountInput>({
-    mode: 'onTouched',
+    mode: 'onChange',
     defaultValues: {
       role: UserRole.Client,
     },

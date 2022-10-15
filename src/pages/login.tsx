@@ -27,7 +27,7 @@ const Login = () => {
     getValues,
     formState: { errors, isValid },
     handleSubmit,
-  } = useForm<LoginInput>({ mode: 'onTouched' });
+  } = useForm<LoginInput>({ mode: 'onChange' });
 
   const onCompleted = (data: LoginMutation) => {
     const {

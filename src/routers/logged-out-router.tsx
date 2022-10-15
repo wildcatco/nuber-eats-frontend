@@ -5,7 +5,7 @@ import CreateAccount from './../pages/create-account';
 export const LoggedOutRouter = () => {
   return (
     <Switch>
-      <Route exact path="/">
+      <Route exact path="/login">
         <Login />
       </Route>
       <Route exact path="/create-account">

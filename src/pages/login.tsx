@@ -2,9 +2,10 @@ import { useMutation } from '@apollo/client';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { isLoggedInVar } from '../apollo';
+import { authToken, isLoggedInVar } from '../apollo';
 import { Button } from '../components/button';
 import { FormError } from '../components/form-error';
+import { LOCAL_STORAGE_TOKEN } from '../constants';
 import { LoginInput, LoginMutation } from '../gql/graphql';
 import nuberLogo from '../images/logo.svg';
 import { graphql } from './../gql/gql';
@@ -33,8 +34,9 @@ const Login = () => {
     const {
       login: { ok, token },
     } = data;
-    if (ok) {
-      console.log(token);
+    if (ok && token) {
+      localStorage.setItem(LOCAL_STORAGE_TOKEN, token);
+      authToken(token);
       isLoggedInVar(true);
     }
   };

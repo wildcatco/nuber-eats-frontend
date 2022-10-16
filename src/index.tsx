@@ -1,8 +1,6 @@
 import { ApolloProvider } from '@apollo/client';
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { client } from './apollo';
 import App from './App';
 import './index.css';
@@ -12,15 +10,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <Router>
-    <React.StrictMode>
-      <ApolloProvider client={client}>
-        <HelmetProvider>
-          <App />
-        </HelmetProvider>
-      </ApolloProvider>
-    </React.StrictMode>
-  </Router>
+  <ApolloProvider client={client}>
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
+  </ApolloProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

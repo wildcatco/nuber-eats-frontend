@@ -1,5 +1,19 @@
 import { useQuery } from '@apollo/client';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
+import { UserRole } from '../gql/graphql';
+import Restaurants from '../pages/client/restaurants';
 import { graphql } from './../gql/gql';
+
+const ClientRoutes = [
+  <Route path="/" exact>
+    <Restaurants />
+  </Route>,
+];
 
 const ME_QUERY = graphql(`
   query me {
@@ -23,11 +37,12 @@ export const LoggedInRouter = () => {
     );
   }
 
-  console.log(data);
-
   return (
-    <div>
-      <h1>{data.me.role}</h1>
-    </div>
+    <Router>
+      <Switch>
+        {data.me.role === UserRole.Client && ClientRoutes}
+        <Redirect to="/" />
+      </Switch>
+    </Router>
   );
 };

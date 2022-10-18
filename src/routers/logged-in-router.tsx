@@ -5,6 +5,7 @@ import { useMe } from '../hooks/useMe';
 import NotFound from '../pages/404';
 import Restaurants from '../pages/client/restaurants';
 import ConfirmEmail from '../pages/user/confirm-email';
+import EditProfile from './../pages/user/edit-profile';
 
 const ClientRoutes = [
   <Route key="/" path="/" exact>
@@ -13,11 +14,13 @@ const ClientRoutes = [
   <Route key="/confirm" path="/confirm" exact>
     <ConfirmEmail />
   </Route>,
+  <Route key="/edit-profile" path="/edit-profile" exact>
+    <EditProfile />
+  </Route>,
 ];
 
 export const LoggedInRouter = () => {
   const { data, loading, error } = useMe();
-  console.log('useMe called');
 
   if (!data || loading || error) {
     return (

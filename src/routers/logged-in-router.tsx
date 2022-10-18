@@ -10,7 +10,7 @@ import { useMe } from '../hooks/useMe';
 import Restaurants from '../pages/client/restaurants';
 
 const ClientRoutes = [
-  <Route path="/" exact>
+  <Route key="temp-key" path="/" exact>
     <Restaurants />
   </Route>,
 ];

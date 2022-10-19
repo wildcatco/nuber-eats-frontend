@@ -10,18 +10,7 @@ import {
   UserRole,
 } from '../gql/graphql';
 import nuberLogo from '../images/logo.svg';
-import { graphql } from './../gql/gql';
-
-export const CREATE_ACCOUNT_MUTATION = graphql(
-  `
-    mutation createAccount($createAccountInput: CreateAccountInput!) {
-      createAccount(input: $createAccountInput) {
-        ok
-        error
-      }
-    }
-  `
-);
+import { CREATE_ACCOUNT_MUTATION } from '../query/users';
 
 const CreateAccount = () => {
   const {

@@ -8,19 +8,7 @@ import { FormError } from '../components/form-error';
 import { LOCAL_STORAGE_TOKEN } from '../constants';
 import { LoginInput, LoginMutation } from '../gql/graphql';
 import nuberLogo from '../images/logo.svg';
-import { graphql } from './../gql/gql';
-
-export const LOGIN_MUTATION = graphql(
-  `
-    mutation login($loginInput: LoginInput!) {
-      login(input: $loginInput) {
-        ok
-        token
-        error
-      }
-    }
-  `
-);
+import { LOGIN_MUTATION } from '../query/users';
 
 const Login = () => {
   const {

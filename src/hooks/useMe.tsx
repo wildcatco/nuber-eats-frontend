@@ -1,16 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { graphql } from '../gql';
-
-const ME_QUERY = graphql(`
-  query me {
-    me {
-      id
-      email
-      role
-      verified
-    }
-  }
-`);
+import { ME_QUERY } from './../query/users';
 
 export const useMe = () => {
   return useQuery(ME_QUERY);

@@ -4,16 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import { useHistory } from 'react-router-dom';
 import { graphql } from '../../gql';
 import { VerifyEmailMutation } from '../../gql/graphql';
+import { VERIFY_EMAIL_MUTATION } from '../../query/users';
 import { useMe } from './../../hooks/useMe';
-
-const VERIFY_EMAIL_MUTATION = graphql(`
-  mutation verifyEmail($verifyEmailInput: VerifyEmailInput!) {
-    verifyEmail(input: $verifyEmailInput) {
-      ok
-      error
-    }
-  }
-`);
 
 const ConfirmEmail = () => {
   const { data: userData } = useMe();

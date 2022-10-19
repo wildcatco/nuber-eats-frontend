@@ -4,17 +4,9 @@ import { useForm } from 'react-hook-form';
 import { Button } from '../../components/button';
 import { FormError } from '../../components/form-error';
 import { EditProfileMutation } from '../../gql/graphql';
+import { EDIT_PROFILE_MUTATION } from '../../query/users';
 import { graphql } from './../../gql/gql';
 import { useMe } from './../../hooks/useMe';
-
-const EDIT_PROFILE_MUTATION = graphql(`
-  mutation editProfile($editProfileInput: EditProfileInput!) {
-    editProfile(input: $editProfileInput) {
-      ok
-      error
-    }
-  }
-`);
 
 interface EditProfileInput {
   email?: string;

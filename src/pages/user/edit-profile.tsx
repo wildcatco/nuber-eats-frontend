@@ -15,7 +15,7 @@ interface EditProfileInput {
 
 const EditProfile = () => {
   const client = useApolloClient();
-  const { data: userData } = useMe();
+  const { data: userData, refetch: userRefetch } = useMe();
   const onCompleted = (data: EditProfileMutation) => {
     const {
       editProfile: { ok },
@@ -40,6 +40,8 @@ const EditProfile = () => {
             email: newEmail,
           },
         });
+
+        userRefetch();
       }
     }
   };

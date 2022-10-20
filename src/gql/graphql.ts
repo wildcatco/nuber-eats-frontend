@@ -51,6 +51,12 @@ export type CategoryOutput = {
   totalResults?: Maybe<Scalars['Int']>;
 };
 
+export type CoreOutput = {
+  __typename?: 'CoreOutput';
+  error?: Maybe<Scalars['String']>;
+  ok: Scalars['Boolean'];
+};
+
 export type CreateAccountInput = {
   email: Scalars['String'];
   password: Scalars['String'];
@@ -278,6 +284,7 @@ export type Mutation = {
   editOrder: EditOrderOutput;
   editProfile: EditProfileOutput;
   editRestaurant: EditRestaurantOutput;
+  initializeDB: CoreOutput;
   login: LoginOutput;
   takeOrder: TakeOrderOutput;
   verifyEmail: VerifyEmailOutput;
@@ -336,6 +343,11 @@ export type MutationEditProfileArgs = {
 
 export type MutationEditRestaurantArgs = {
   input: EditRestaurantInput;
+};
+
+
+export type MutationInitializeDbArgs = {
+  adminKey: Scalars['String'];
 };
 
 

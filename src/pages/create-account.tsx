@@ -97,10 +97,6 @@ const CreateAccount = () => {
           <input
             {...register('password', {
               required: 'Password is required',
-              minLength: {
-                value: 8,
-                message: 'Password must be more than 8 characters',
-              },
             })}
             type="password"
             placeholder="Password"

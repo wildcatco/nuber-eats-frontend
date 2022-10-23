@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface IRestaurantProps {
   id: string;
@@ -14,7 +15,7 @@ const Restaurant: React.FC<IRestaurantProps> = ({
   categoryName,
 }) => {
   return (
-    <div>
+    <Link to={`/restaurants/${id}`}>
       <div
         className="py-28 bg-cover bg-center mb-3"
         style={{ backgroundImage: `url(${coverImg})` }}
@@ -23,7 +24,7 @@ const Restaurant: React.FC<IRestaurantProps> = ({
       <span className="border-gray-400 inline-block mt-1 text-xs opacity-50">
         {categoryName}
       </span>
-    </div>
+    </Link>
   );
 };
 

@@ -17,7 +17,7 @@ const Header = () => {
       <header className="py-4">
         <div className="w-full px-5 xl:px-0 container flex justify-between items-center">
           <Link to="/">
-            <img src={nuberLogo} alt="logo" className="w-24" />
+            <img src={nuberLogo} alt="logo" className="w-32" />
           </Link>
           <span className="text-xs">
             <Link to="/edit-profile/">

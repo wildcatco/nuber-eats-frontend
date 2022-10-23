@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Restaurant from '../../components/restaurant';
 import { RESTAURANTS_QUERY } from '../../query/restaurants';
 
@@ -60,19 +60,20 @@ const Restaurants: React.FC = () => {
         <div className="container mt-8">
           <div className="flex flex-wrap justify-around max-w-3xl mx-auto">
             {data?.categories.categories?.map((category) => (
-              <div
-                key={category.id}
-                className="w-36 h-14 mx-5 my-3 bg-emerald-500 hover:bg-emerald-800 cursor-pointer rounded-lg flex justify-end"
-              >
-                <span className="px-4 text-lg text-white">{category.name}</span>
-                {category.coverImg && (
-                  <img
-                    className="w-10 rounded-lg"
-                    src={category.coverImg}
-                    alt="category"
-                  />
-                )}
-              </div>
+              <Link key={category.id} to={`/category/${category.slug}`}>
+                <div className="w-36 h-14 mx-5 my-3 bg-emerald-500 hover:bg-emerald-800 cursor-pointer rounded-lg flex justify-end">
+                  <span className="px-4 text-lg text-white">
+                    {category.name}
+                  </span>
+                  {category.coverImg && (
+                    <img
+                      className="w-10 rounded-lg"
+                      src={category.coverImg}
+                      alt="category"
+                    />
+                  )}
+                </div>
+              </Link>
             ))}
           </div>
           <div className="mt-10 grid md:grid-cols-3 gap-x-5 gap-y-10">

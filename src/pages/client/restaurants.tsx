@@ -1,7 +1,14 @@
 import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import Restaurant from '../../components/restaurant';
 import { RESTAURANTS_QUERY } from '../../query/restaurants';
+
+interface IFormProps {
+  searchTerm: string;
+}
 
 const Restaurants: React.FC = () => {
   const [page, setPage] = useState(1);
@@ -18,10 +25,32 @@ const Restaurants: React.FC = () => {
   const onNextPageClick = () => setPage((current) => current + 1);
   const onPrevPageClick = () => setPage((current) => current - 1);
 
+  const { register, handleSubmit, getValues } = useForm<IFormProps>({
+    mode: 'onSubmit',
+  });
+  const history = useHistory();
+  const onSearchSubmit = () => {
+    const { searchTerm } = getValues();
+    history.push({
+      pathname: '/search',
+      search: `?term=${searchTerm}`,
+    });
+  };
+
   return (
     <div>
-      <form className="bg-gray-800 w-full py-20 flex flex-col items-center justify-center">
+      <Helmet>
+        <title>Home | Nuber Eats</title>
+      </Helmet>
+      <form
+        className="bg-gray-800 w-full py-20 flex flex-col items-center justify-center"
+        onSubmit={handleSubmit(onSearchSubmit)}
+      >
         <input
+          {...register('searchTerm', {
+            required: true,
+            min: 3,
+          })}
           className="input rounded-md border-0 w-3/4 md:w-1/4 h-9"
           type="search"
           placeholder="Search restaurants..."
@@ -49,6 +78,7 @@ const Restaurants: React.FC = () => {
           <div className="mt-10 grid md:grid-cols-3 gap-x-5 gap-y-10">
             {data?.restaurants.results?.map((restaurant) => (
               <Restaurant
+                key={restaurant.id}
                 id={restaurant.id + ''}
                 name={restaurant.name}
                 coverImg={restaurant.coverImg}

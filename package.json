@@ -30,6 +30,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:cov": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "codegen": "graphql-codegen",
     "codegen:watch": "graphql-codegen --watch"
@@ -57,5 +58,12 @@
     "@graphql-codegen/client-preset": "^1.0.6",
     "@types/react-helmet": "^6.1.5",
     "@types/react-router-dom": "^5.3.3"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "./src/components/**/*.tsx",
+      "./src/pages/**/*.tsx",
+      "./src/routers/**/*.tsx"
+    ]
   }
 }

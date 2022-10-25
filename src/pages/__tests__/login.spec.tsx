@@ -1,7 +1,7 @@
 import { ApolloProvider } from '@apollo/client';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { createMockClient, MockApolloClient } from 'mock-apollo-client';
+import { createMockClient } from 'mock-apollo-client';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { LOGIN_MUTATION } from '../../query/users';
@@ -10,7 +10,7 @@ import Login from '../login';
 const mockedClient = createMockClient();
 const mockedMutationResponse = jest.fn();
 
-const renderLogin = (mockedClient: MockApolloClient) =>
+const renderLogin = () =>
   render(
     <Router>
       <HelmetProvider>
@@ -23,7 +23,7 @@ const renderLogin = (mockedClient: MockApolloClient) =>
 
 describe('Login', () => {
   it('renders OK', async () => {
-    renderLogin(mockedClient);
+    renderLogin();
 
     await waitFor(() => {
       expect(document.title).toBe('Login | Nuber Eats');
@@ -31,7 +31,7 @@ describe('Login', () => {
   });
 
   it('displays email validation errors', async () => {
-    renderLogin(mockedClient);
+    renderLogin();
 
     const emailInput = screen.getByPlaceholderText('Email');
     userEvent.type(emailInput, 'wrong@mail');
@@ -46,7 +46,7 @@ describe('Login', () => {
   });
 
   it('displays password required error', async () => {
-    renderLogin(mockedClient);
+    renderLogin();
 
     const emailInput = screen.getByPlaceholderText('Email');
     userEvent.type(emailInput, 'test@mail.com');
@@ -70,7 +70,7 @@ describe('Login', () => {
     });
     mockedClient.setRequestHandler(LOGIN_MUTATION, mockedMutationResponse);
 
-    renderLogin(mockedClient);
+    renderLogin();
 
     const formData = {
       email: 'test@mail.com',
@@ -111,7 +111,7 @@ describe('Login', () => {
       },
     });
 
-    renderLogin(mockedClient);
+    renderLogin();
 
     const formData = {
       email: 'test@mail.com',

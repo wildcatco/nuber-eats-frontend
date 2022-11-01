@@ -14,7 +14,7 @@ describe("Log In", () => {
     cy.findByRole("alert").should("have.text", "Password is required");
   });
 
-  it("can fill out the form", () => {
+  it("can fill out the form and login", () => {
     cy.visit("/");
     cy.findByPlaceholderText("Email").type("c1@mail.com");
     cy.findByPlaceholderText("Password").type("1111");

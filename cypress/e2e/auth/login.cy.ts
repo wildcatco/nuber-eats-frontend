@@ -15,10 +15,6 @@ describe("Log In", () => {
   });
 
   it("can fill out the form and login", () => {
-    cy.visit("/");
-    cy.findByPlaceholderText("Email").type("c1@mail.com");
-    cy.findByPlaceholderText("Password").type("1111");
-    cy.findByRole("button").should("not.be.disabled").click();
-    cy.window().its("localStorage.nuber-token").should("be.a", "string");
+    cy.login("c1@mail.com", "1111");
   });
 });
